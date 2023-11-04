@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import {ContactList} from './ContactList/ContactList'
-import { ContactForm } from './ContactForm/ContactForm';
+import  {ContactForm } from './ContactForm/ContactForm';
 import { GlobalStyle } from './GlobalStyle/Globalstyle';
 import { Titleh1,Titleh2 } from './App.styled';
 
@@ -15,17 +15,8 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
+  
   updateContactList = (newValues) => {
     if (this.state.contacts.some(contact => contact.name.toLowerCase() === newValues.name.toLowerCase())) {
       alert(`${newValues.name} is already in contacts`);
