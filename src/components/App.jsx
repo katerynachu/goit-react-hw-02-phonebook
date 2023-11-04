@@ -3,6 +3,9 @@ import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import {ContactList} from './ContactList/ContactList'
 import { ContactForm } from './ContactForm/ContactForm';
+import { GlobalStyle } from './GlobalStyle/Globalstyle';
+import { Titleh1,Titleh2 } from './App.styled';
+
 class App extends Component {
   state = {
     contacts: [
@@ -45,7 +48,6 @@ class App extends Component {
   };
 
   deleteContactItem = (id)=>{
-      console.log(id);
       this.setState(prevState => {
         return {
           contacts: prevState.contacts.filter(item => item.id !== id),
@@ -60,14 +62,16 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Phonebook</h1>
+        <Titleh1>Phonebook</Titleh1>
         <ContactForm addContact={this.updateContactList}/>
-        <h2>Contacts</h2>
+        <Titleh2>Contacts</Titleh2>
         <Filter
+        title={'Find contact by name'}
           onUpdate={this.updateContactFilter}
           filter={this.state.filter}
         />
       <ContactList onDelete={this.deleteContactItem} contacts={filteredContactItems}/>
+      <GlobalStyle/>
       </div>
     );
   }

@@ -1,12 +1,15 @@
 import React from 'react';
-
-export const Filter = ({filter,onUpdate}) =>{
+import { FilterInput ,FilterTitle} from './Flter.styled';
+export const Filter = ({filter,onUpdate,title}) =>{
     return(
-        <input
+      <>
+      <FilterTitle>{title}</FilterTitle>
+        <FilterInput
           onChange={onUpdate}
           type="text"
           name="filter"
           value={filter}
         />
+        </>
     )
 }
