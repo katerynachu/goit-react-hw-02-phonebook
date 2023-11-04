@@ -27,7 +27,7 @@ class App extends Component {
   };
 
   updateContactList = (newValues) => {
-    if (this.state.contacts.some(contact => contact.name === newValues.name)) {
+    if (this.state.contacts.some(contact => contact.name.toLowerCase() === newValues.name.toLowerCase())) {
       alert(`${newValues.name} is already in contacts`);
     } else {
       const newContact = {
