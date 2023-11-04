@@ -22,18 +22,24 @@ class App extends Component {
       [name]: value,
     });
   };
-  updateContactList = (newValues) => {
  
-
-    const newContact = {
-     ...newValues,
-      id: nanoid(),
-    };
-
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+  updateContactList = (newValues) => {
+    if (this.state.contacts.some(contact => contact.name === newValues.name)) {
+      alert(`${newValues.name} is already in contacts`);
+    } else {
+      const newContact = {
+        ...newValues,
+        id: nanoid(),
+      };
+  
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    }
   };
+
+
+
   updateContactFilter = event => {
     this.setState({
       filter: event.target.value,
