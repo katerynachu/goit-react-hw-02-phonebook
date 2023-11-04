@@ -22,7 +22,7 @@ class App extends Component {
       [name]: value,
     });
   };
- 
+
   updateContactList = (newValues) => {
     if (this.state.contacts.some(contact => contact.name === newValues.name)) {
       alert(`${newValues.name} is already in contacts`);
@@ -38,13 +38,20 @@ class App extends Component {
     }
   };
 
-
-
   updateContactFilter = event => {
     this.setState({
       filter: event.target.value,
     });
   };
+
+  deleteContactItem = (id)=>{
+      console.log(id);
+      this.setState(prevState => {
+        return {
+          contacts: prevState.contacts.filter(item => item.id !== id),
+        };
+      });
+  }
   render() {
     const { contacts, filter } = this.state;
     const filteredContactItems = contacts.filter(contact =>
@@ -60,7 +67,7 @@ class App extends Component {
           onUpdate={this.updateContactFilter}
           filter={this.state.filter}
         />
-      <ContactList contacts={filteredContactItems}/>
+      <ContactList onDelete={this.deleteContactItem} contacts={filteredContactItems}/>
       </div>
     );
   }
